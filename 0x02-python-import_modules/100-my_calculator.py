@@ -5,8 +5,8 @@ if __name__ == '__main__':
     if not len(sys.argv) == 4:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         sys.exit(1)
-    if sys.argv[2][0] != '+' and sys.argv[2][0] != '-'
-    and sys.argv[2][0] != '*' and sys.argv[2][0] != '/':
+    if sys.argv[2][0] != '+' and sys.argv[2][0] != '-'\
+            and sys.argv[2][0] != '*' and sys.argv[2][0] != '/':
         print("Unknown operator. Available operators: +, -, * and /")
         sys.exit(1)
     print("{} {} {} = ".format(sys.argv[1], sys.argv[2], sys.argv[3]), end="")
