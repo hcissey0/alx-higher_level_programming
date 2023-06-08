@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 if __name__ == '__main__':
-    import hidden_4
-    for i in dir():
-        if i[0] == '_':
-            continue
-        print("{}".format(i))
+    for name in dir(__import__("hidden_4.pyc")):
+        if not name.startswith("__"):
+            print(name)
