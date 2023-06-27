@@ -72,14 +72,15 @@ class Square:
         """Prints out the square with #
         """
         x, y = self.__position
-        while y >= 0:
+        if self.size == 0:
             print()
-            y -= 1
-        for i in range(self.__size):
-            for i in range(x):
-                print(" ", end="")
-            for j in range(self.__size):
-                print("#", end="")
-            print()
-        if self.__size == 0:
-            print()
+        else:
+            while y != 0:
+                print()
+                y -= 1
+            for i in range(self.__size):
+                for i in range(x):
+                    print(" ", end="")
+                for j in range(self.__size):
+                    print("#", end="")
+                print()
