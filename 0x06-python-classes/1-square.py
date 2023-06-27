@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 class Square:
-    """This is a square Class
+    """
+    This is a square Class
+
+    Attributes:
+        size (int): the size of the square
     """
     def __init__(self, size):
         """This is the constructor
