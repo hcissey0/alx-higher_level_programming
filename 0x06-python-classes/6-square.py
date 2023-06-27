@@ -15,14 +15,8 @@ class Square:
             TypeError: when size is not an int
             ValueError: when size is < 0
         """
-        if type(size) != int:
-            raise TypeError("size must be an integer")
-        if size < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = size
-        if type(position) != tuple and len(position) != 2:
-            raise TypeError("position must be a tuple of 2 positive integers")
-        self.__position = position
+        self.size = size
+        self.position = position
 
     def area(self):
         """The area of the square
@@ -67,7 +61,7 @@ class Square:
         """Setter for the position
         """
         if not isinstance(value, tuple) or\
-                not len(value) == 2 or\
+                len(value) != 2 or\
                 not all(isinstance(i, int) for i in value) or\
                 not all(i >= 0 for i in value):
             raise TypeError("position must be a tuple\
@@ -78,7 +72,7 @@ class Square:
         """Prints out the square with #
         """
         x, y = self.__position
-        while y != 0:
+        while y >= 0:
             print()
             y -= 1
         for i in range(self.__size):
