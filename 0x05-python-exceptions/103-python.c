@@ -1,6 +1,9 @@
 #include <Python.h>
 #include <stdio.h>
 
+void print_python_bytes(PyObject *);
+void print_python_float(PyObject *);
+
 /**
  * print_python_list - prints python list
  * @p: the list
@@ -16,7 +19,7 @@ void print_python_list(PyObject *p)
 
 	if (!PyList_Check(p))
 	{
-		printf("[ERROR] Invalid List Object\n");
+		printf("  [ERROR] Invalid List Object\n");
 		return;
 	}
 
@@ -52,7 +55,7 @@ void print_python_bytes(PyObject *p)
 
 	if (!PyBytes_Check(p))
 	{
-		printf("[ERROR] Invalid Bytes Object\n");
+		printf("  [ERROR] Invalid Bytes Object\n");
 		return;
 	}
 
@@ -84,7 +87,7 @@ void print_python_float(PyObject *p)
 	setbuf(stdout, NULL);
 	if (!PyFloat_Check(p))
 	{
-		printf("[ERROR] Invalid Float Object\n");
+		printf("  [ERROR] Invalid Float Object\n");
 		return;
 	}
 
