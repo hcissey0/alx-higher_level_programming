@@ -78,6 +78,6 @@ class Square:
             for i in range(y):
                 print()
             for i in range(self.size):
-                for i in range(self.size):
+                for j in range(self.size):
                     print(" " * x + "#" * self.size)
                 print()
