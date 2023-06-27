@@ -102,9 +102,11 @@ class SinglyLinkedList:
             None
         """
         tmp = Node(value)
+        cnode = self.__head
         if self.__head is None or value < self.__head.data:
             tmp.next_node = self.__head
             self.__head = tmp
+            return
         else:
             cnode = self.__head
         while cnode.next_node is not None and value >= cnode.next_node.data:

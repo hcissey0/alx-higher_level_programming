@@ -28,20 +28,12 @@ class Square:
 
     @property
     def size(self):
-        """The getter  function for size
-
-        Returns:
-            The size value
+        """The getter and setter functions for size
         """
         return self.__size
 
     @size.setter
     def size(self, value):
-        """The setter function for size
-
-        Args:
-            value (int): the value to set
-        """
         if type(value) != int:
             raise TypeError("size must be an integer")
         if value < 0:
@@ -71,7 +63,6 @@ class Square:
     def my_print(self):
         """Prints out the square with #
         """
-        x, y = self.__position
         if self.__size == 0:
             print("")
         else:
