@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Defines a singly linked list node"""
+
+
 class Node:
     """
     A Node of a singly linked list
@@ -6,7 +9,7 @@ class Node:
     Attributes:
         head (Node): The head node of the linked list.
     """
-    def __init__(self, data, next_node=None)
+    def __init__(self, data, next_node=None):
         """
         The instantiator of the Node
 
@@ -71,6 +74,10 @@ class Node:
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
+
+"""Defines a singly liked list"""
+
+
 class SinglyLinkedList:
     """
     Singly linked list
@@ -100,10 +107,10 @@ class SinglyLinkedList:
             self.__head = tmp
         else:
             cnode = self.__head
-            while cnode.next_node is not None and value >= cnode.next_node.data:
-                cnode = cnode.next_node
-            tmp.next_node = cnode.next_node
-            cnode.next_node = tmp
+        while cnode.next_node is not None and value >= cnode.next_node.data:
+            cnode = cnode.next_node
+        tmp.next_node = cnode.next_node
+        cnode.next_node = tmp
 
     def __str__(self):
         """
