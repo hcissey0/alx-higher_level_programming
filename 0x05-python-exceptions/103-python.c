@@ -21,7 +21,7 @@ void print_python_bytes(PyObject *p)
 	size = PyBytes_Size(p);
 	printf("  size: %zd\n", size);
 
-	str = PyBytes_AS_STRING(p);
+	str = ((PyBytesObject *)p)->ob_sval;
 	printf("  trying string: %s\n", str);
 	if (size < 10)
 		n = size + 1;
