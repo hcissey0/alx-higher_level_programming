@@ -70,7 +70,7 @@ class Node:
         Raises:
             TypeError: when value is not a Node or None
         """
-        if not isinstance(value, Node) or value is not None:
+        if not isinstance(value, Node) and value is not None:
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
@@ -102,13 +102,11 @@ class SinglyLinkedList:
             None
         """
         tmp = Node(value)
-        cnode = self.__head
         if self.__head is None or value < self.__head.data:
             tmp.next_node = self.__head
             self.__head = tmp
             return
-        else:
-            cnode = self.__head
+        cnode = self.__head
         while cnode.next_node is not None and value >= cnode.next_node.data:
             cnode = cnode.next_node
         tmp.next_node = cnode.next_node
@@ -122,7 +120,7 @@ class SinglyLinkedList:
             A representation of the linked list
         """
         if self.__head is None:
-            return ""
+            return "\n"
         cnode = self.__head
         res = str(cnode.data) + "\n"
         while cnode.next_node is not None:
