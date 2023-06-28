@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import math
 """This is a recompiled magic class"""
 
 
@@ -20,6 +19,7 @@ class MagicClass:
         Returns:
             the area
         """
+        import math
         return (math.pi * self.__radius ** 2)
 
     def circumference(self):
@@ -29,4 +29,5 @@ class MagicClass:
         Returns:
             the circumference
         """
+        import math
         return (2 * math.pi * self.__radius)
