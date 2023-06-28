@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import math
 """This is a recompiled magic class"""
 
 
