@@ -119,11 +119,9 @@ class SinglyLinkedList:
         Returns:
             A representation of the linked list
         """
-        if self.__head is None:
-            return "\n"
-        cnode = self.__head
-        res = str(cnode.data) + "\n"
-        while cnode.next_node is not None:
-            cnode = cnode.next_node
-            res += str(cnode.data) + "\n"
-        return res
+        res = ''
+        c = self.__head
+        while c:
+            res += str(c.data) + '\n'
+            c = c.next_node
+        return res.strip()
