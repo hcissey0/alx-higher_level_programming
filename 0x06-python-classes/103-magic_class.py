@@ -8,18 +8,9 @@ class MagicClass:
 
     def __init__(self, radius=0):
         """This is the instantiator"""
-        self.radius = radius
-
-    @property
-    def radius(self):
-        """The getter and setter for raduis"""
-        return self.__radius
-
-    @radius.setter
-    def radius(self, value):
-        if type(value) is not int and type(value) is not float:
+        if type(radius) is not int and type(radius) is not float:
             raise TypeError("radius must be a number")
-        self.__radius = value
+        self.__radius = radius
 
     def area(self):
         """
