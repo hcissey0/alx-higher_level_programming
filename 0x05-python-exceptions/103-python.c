@@ -29,7 +29,7 @@ void print_python_bytes(PyObject *p)
 		n = 10;
 	printf("  first %zd bytes:", n);
 	for (i = 0; i < n; i++)
-		printf(" %02x", (unsigned int)str[i]);
+		printf(" %02x",(unsigned char)str[i]);
 	printf("\n");
 }
 
