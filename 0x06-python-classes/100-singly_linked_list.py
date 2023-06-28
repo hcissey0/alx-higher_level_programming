@@ -126,6 +126,6 @@ class SinglyLinkedList:
         cnode = self.__head
         res = str(cnode.data) + "\n"
         while cnode.next_node is not None:
-            res += str(cnode.next_node.data) + "\n"
             cnode = cnode.next_node
+            res += str(cnode.data) + "\n"
         return res
