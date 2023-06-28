@@ -77,4 +77,4 @@ class Square:
         res += '\n' * self.position[1]
         for _ in range(self.size):
             res += " " * self.position[0] + "#" * self.size + '\n'
-        return res
+        return res[:-1]
