@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def valid(brd, r, c):
     """check if the placement is valid"""
     # Checking the row on left side
@@ -18,8 +19,8 @@ def valid(brd, r, c):
         if brd[i][j]:
             return False
 
-
     return True
+
 
 def solve(brd, c, solns):
     """Recursively solve the puzzle"""
@@ -37,6 +38,7 @@ def solve(brd, c, solns):
             brd[i][c] = 1
             solve(brd, c + 1, solns)
             brd[i][c] = 0
+
 
 def main():
     """This is the entry point of the program"""
