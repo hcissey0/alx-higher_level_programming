@@ -11,15 +11,16 @@ def text_indentation(text):
     """
     if type(text) is not str:
         raise TypeError("text must be a string")
-    puncts = ".!?:;"
-    spaces = "\n\t "
-    for i in range(len(text)):
-        if text[i] in puncts and text[i + 1] in puncts:
-            continue
-        if text[i + 1] in spaces:
-            continue
-        if text[i] in puncts:
-            print(text[i])
-            print()
+    text = text.strip()
+    puncts = ".?:"
+    spaces = "\t "
+    for c in puncts:
+        text = text.replace(c, c + "\n\n")
+    for c in range(len(text)):
+        if c < len(text) and text[c] in spaces and text[c + 1] in spaces:
+            text = text.replace(text[c : c + 2], text[c])
+    for i, l in enumerate(text.split('\n')):
+        if i == len(text.split("\n")) - 1:
+            print(l.strip(), end="")
         else:
-            print(text[i], end="")
+            print(l.strip())

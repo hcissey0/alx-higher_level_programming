@@ -1,0 +1,37 @@
+This is a test for the '5-text_indentation' module
+
+Checking docstring:
+	>>> docstring = __import__('5-text_indentation').__doc__
+	>>> len(docstring) > 1
+	True
+	>>> docstring = __import__('5-text_indentation').text_indentation.__doc__
+	>>> len(docstring) > 1
+	True
+
+Importing the function:
+	>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Testing non string type:
+	>>> text_indentation(23)
+	Traceback (most recent call last):
+	...
+	TypeError: text must be a string
+
+TEsting colon:
+	>>> text_indentation("This is ok: 12, 2323")
+	This is ok:
+	<BLANKLINE>
+	12, 2323
+
+Testing fullstop:
+	>>> text_indentation("hi. Where are you from")
+	hi.
+	<BLANKLINE>
+	Where are you from
+
+Testing multiple spaces:
+	>>> text_indentation("hello \
+	...	This is me.	i love you")
+	hello This is me.
+	<BLANKLINE>
+	i love you
