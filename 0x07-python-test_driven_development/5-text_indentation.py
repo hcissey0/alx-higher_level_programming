@@ -18,7 +18,7 @@ def text_indentation(text):
         text = text.replace(c, c + "\n\n")
     for c in range(len(text)):
         if c < len(text) and text[c] in spaces and text[c + 1] in spaces:
-            text = text.replace(text[c : c + 2], text[c])
+            text = text.replace(text[c:c + 2], text[c])
     for i, l in enumerate(text.split('\n')):
         if i == len(text.split("\n")) - 1:
             print(l.strip(), end="")
