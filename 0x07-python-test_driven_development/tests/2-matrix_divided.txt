@@ -14,7 +14,7 @@ Importing the function:
 
 Defining matrices to be used for testing:
 	>>> norm_mat = [[1, 2, 3], [4, 5, 6]]
-	>>> float_mat = [[1.0, 2.5, 4.3],a [4, 45.5, 60.2]]
+	>>> float_mat = [[1.0, 2.5, 4.3], [4, 45.5, 60.2]]
 	>>> varlen_mat = [[2, 4, 5, 5], [4, 5, 6]]
 	>>> nonlen_mat = [[2, 3], [4, 33, 2]]
 	>>> nontype_mat = [['f', 2], [True, [1]]]
@@ -62,6 +62,11 @@ Testing normal matrix with other types:
 	...
 	TypeError: div must be a number
 
+Testing non len matrix:
+	>>> matrix_divided(nonlen_mat, 3)
+	Traceback (most recent call last):
+	...
+	TypeError: Each row of the matrix must have the same size
 
 Testing different matrices:
 	>>> matrix_divided(empty_mats, 2)

@@ -35,7 +35,7 @@ def matrix_divided(matrix, div):
         if size == -1:
             size = len(i)
         elif len(i) != size:
-            raise TypeError("Each row of matrix must have \
+            raise TypeError("Each row of the matrix must have \
 the same size")
         for j in i:
             if type(j) is not int and type(j) is not float:
