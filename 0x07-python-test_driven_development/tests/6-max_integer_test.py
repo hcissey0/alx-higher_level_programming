@@ -18,6 +18,10 @@ class TestMaxInteger(unittest.TestCase):
         self.assertRaises(KeyError, max_integer, {'hi': 3})
         self.assertEqual(max_integer("abc"), 'c')
         self.assertRaises(TypeError, max_integer, 4)
+        self.assertEqual(max_integer([4, 3, 2]), 4)
+        self.assertEqual(max_integer([2, 5, 3]), 5)
+        self.assertEqual(max_integer([5,]), 5)
+
 
 
 if __name__ == '__main__':
