@@ -5,7 +5,7 @@
  * print_python_string - prints a python string
  * @p: the python string
  */
-void print_pyton_string(PyObject *p)
+void print_python_string(PyObject *p)
 {
 	PyUnicodeObject *unicode;
 	const char *type;
