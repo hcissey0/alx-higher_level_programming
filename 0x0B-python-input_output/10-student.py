@@ -11,7 +11,11 @@ class Student():
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attrs=None):
         """Returns a dict repr of a Student"""
-        at = {k: v for k, v in self.__dict__.items() if not k.startswith("__")}
+        if attrs is None:
+            attrs = self.__dict__.keys()
+        at = {k: v for k, v in self.__dict__.items() if k in attrs}
         return at
+
+
