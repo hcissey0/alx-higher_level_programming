@@ -17,8 +17,8 @@ scodes = {200: 0,
           500: 0
           }
 try:
-    for l in sys.stdin:
-        tokens = l.strip().split()
+    for lis in sys.stdin:
+        tokens = lis.strip().split()
         if len(tokens) > 2:
             scode = int(tokens[-2])
             fsize = int(tokens[-1])
