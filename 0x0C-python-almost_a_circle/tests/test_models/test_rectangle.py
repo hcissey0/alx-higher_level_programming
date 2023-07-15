@@ -9,6 +9,10 @@ from models.rectangle import Rectangle
 class TestRectangle_initialization(unittest.TestCase):
     """This test the initialization of a rectangle"""
 
+    def test_instance(self):
+        rect = Rectangle(2, 3)
+        self.assertIsInstance(rect, Base)
+
     def test_no_arguments(self):
         with self.assertRaises(TypeError):
             Rectangle()
@@ -35,6 +39,10 @@ class TestRectangle_initialization(unittest.TestCase):
     def test_5_args(self):
         rect = Rectangle(1, 2, 4, 5, 3)
         self.assertEqual(3, rect.id)
+
+    def test_more_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle(1, 2, 3, 4, 5, 6)
 
 
 class TestRectangleWidth(unittest.TestCase):
@@ -594,4 +602,110 @@ class TestRectangleUpdateKwargs(unittest.TestCase):
     """This is the unittest case for the update with key word arguments"""
 
     def test_no_args(self):
-        pass
+        rect = Rectangle(1, 1, 1, 1, 1)
+        rect.update()
+        self.assertEqual('[Rectangle] (1) 1/1 - 1/1', str(rect))
+
+    def test_one_arg(self):
+        rect = Rectangle(1, 1)
+        rect.update(x=1)
+        self.assertEqual(f'[Rectangle] ({rect.id}) 1/0 - 1/1', str(rect))
+
+    def test_2_args(self):
+        rect = Rectangle(1, 1)
+        rect.update(x=3, y=4)
+        self.assertEqual(f'[Rectangle] ({rect.id}) 3/4 - 1/1', str(rect))
+
+    def test_3_args(self):
+        rect = Rectangle(1, 2)
+        rect.update(id=2, x=3, y=5)
+        self.assertEqual(f'[Rectangle] (2) 3/5 - 1/2', str(rect))
+
+    def test_4_args(self):
+        rect = Rectangle(2, 3)
+        rect.update(id=2, width=1, height=1, x=5)
+        self.assertEqual(f'[Rectangle] (2) 5/0 - 1/1', str(rect))
+
+    def test_5_args(self):
+        rect = Rectangle(1, 1)
+        rect.update(id=2, width=2, height=2, x=1, y=1)
+        self.assertEqual(f'[Rectangle] (2) 1/1 - 2/2', str(rect))
+
+    def test_more_args(self):
+        rect = Rectangle(1, 1)
+        rect.update(id=1, width=2, height=2, x=1, y=1, z=1)
+        self.assertEqual(f'[Rectangle] (1) 1/1 - 2/2', str(rect))
+
+    def test_unknown_args(self):
+        rect = Rectangle(2, 2)
+        rect.update(s=2, v=8)
+        self.assertEqual(f'[Rectangle] ({rect.id}) 0/0 - 2/2', str(rect))
+
+    def test_id_none(self):
+        rect = Rectangle(2, 2)
+        rect.update(id=None)
+        self.assertEqual(f'[Rectangle] ({rect.id}) 0/0 - 2/2', str(rect))
+
+    def test_diff_type_w(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle(1, 1).update(width="ehllo")
+
+    def test_diff_type_h(self):
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            Rectangle(2, 1).update(height="helli")
+
+    def test_diff_type_x(self):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Rectangle(2, 2).update(x="ff")
+
+    def test_diff_type_y(self):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Rectangle(1, 1).update(y="shdlf")
+
+    def test_0_w(self):
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Rectangle(1, 1).update(width=0)
+
+    def test_0_h(self):
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            Rectangle(2, 2).update(height=0)
+
+    def test_neg_w(self):
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Rectangle(1, 2).update(width=-1)
+
+    def test_neg_h(self):
+        with self.assertRaisesRegex(ValueError, 'height must be > 0'):
+            Rectangle(2, 2).update(height=-2)
+
+    def test_neg_x(self):
+        with self.assertRaisesRegex(ValueError, 'x must be >= 0'):
+            Rectangle(2, 3).update(x=-2)
+
+    def test_neg_y(self):
+        with self.assertRaisesRegex(ValueError, 'y must be >= 0'):
+            Rectangle(2, 1).update(y=-5)
+
+
+class TestRectangleToDictionary(unittest.TestCase):
+    """This is the test case class for the to_dictionary func"""
+
+    def test_no_arg(self):
+        rect = Rectangle(1, 1, 1, 1, 1)
+        self.assertDictEqual(
+                {'id': 1, 'width': 1, 'height': 1, 'x': 1, 'y': 1},
+                rect.to_dictionary())
+
+    def test_1_arg(self):
+        with self.assertRaises(TypeError):
+            Rectangle(2, 2).to_dictionary(3)
+
+    def test_not_equal(self):
+        rect1 = Rectangle(2, 3)
+        rect2 = Rectangle(3, 4)
+        rect2.update(**rect1.to_dictionary())
+        self.assertNotEqual(rect1, rect2)
+
+
+if __name__ == "__main__":
+    unittest.main()
