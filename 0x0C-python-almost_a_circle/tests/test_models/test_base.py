@@ -221,5 +221,59 @@ class TestBaseSaveToFile(unittest.TestCase):
             self.assertEqual("[]", f.read())
 
 
+class TestBaseFromJSONString(unittest.TestCase):
+    """This is the test case for the from_json_string() func"""
+
+    def test_rect_ret_type(self):
+        self.assertIsInstance(
+                Rectangle.from_json_string("[]"), list)
+
+    def test_square_ret_type(self):
+        self.assertIsInstance(
+                Square.from_json_string("[]"), list)
+
+    def test_Rectangle_no_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string()
+
+    def test_Square_no_args(self):
+        with self.assertRaises(TypeError):
+            Square.from_json_string()
+
+    def test_Rectangle_1_args(self):
+        list_input = [
+                {'id': 89, 'width': 10, 'height': 4}
+                ]
+        json_string = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_string)
+        self.assertEqual(list_input, list_output)
+
+    def test_Rectangle_2_args(self):
+        list_input = [
+                {'id': 90, 'width': 21, 'height': 43},
+                {'id': 32, 'width': 43, 'height': 43}
+                ]
+        json_string = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_string)
+        self.assertEqual(list_input, list_output)
+
+    def test_Square_2_args(self):
+        list_input = [
+                {'id': 23, 'size': 43},
+                {'id': 43, 'size': 23}
+                ]
+        json_string = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_string)
+        self.assertEqual(list_input, list_output)
+
+    def test_Rectangle_more_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string("[]", '[]')
+
+    def test_Square_more_args(self):
+        with self.assertRaises(TypeError):
+            Square.from_json_string('[]', '[]')
+
+
 if __name__ == "__main__":
     unittest.main()
