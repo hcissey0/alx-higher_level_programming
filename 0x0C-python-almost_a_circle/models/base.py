@@ -27,9 +27,10 @@ class Base:
     def from_json_string(json_string):
         """Returns list from a json string"""
         import json
-        if json_string is None:
+        if json_string:
+            return json.JSONDecoder().decode(json_string)
+        else:
             return []
-        return json.JSONDecoder().decode(json_string)
 
     @classmethod
     def save_to_file(cls, list_objs):
@@ -40,4 +41,29 @@ class Base:
             if list_objs:
                 for obj in list_objs:
                     list_dict.append(obj.to_dictionary())
-            f.write(Base.to_json_string(list_dict))
+            f.write(cls.to_json_string(list_dict))
+
+    @classmethod
+    def create(cls, **dictionary):
+        """This method creates a new instace of the calling class"""
+        temp = None
+        if cls.__name__ == "Rectangle":
+            temp = cls(1, 1)
+        elif cls.__name__ == "Square":
+            temp = cls(1)
+        temp.update(**dictionary)
+        return temp
+
+    @classmethod
+    def load_from_file(cls):
+        """Loads a list of instances from a file"""
+        filename = cls.__name__ + ".json"
+        try:
+            res = []
+            with open(filename, "r") as f:
+                list_dict = cls.from_json_string(f.read())
+                for dic in list_dict:
+                    res.append(cls.create(**dic))
+            return res
+        except Exception:
+            return []
