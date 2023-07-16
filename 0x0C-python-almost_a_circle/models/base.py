@@ -23,6 +23,14 @@ class Base:
             return "[]"
         return json.JSONEncoder().encode(list_dictionaries)
 
+    @staticmethod
+    def from_json_string(json_string):
+        """Returns list from a json string"""
+        import json
+        if json_string is None:
+            return []
+        return json.JSONDecoder().decode(json_string)
+
     @classmethod
     def save_to_file(cls, list_objs):
         """Saves the objects to a file"""
