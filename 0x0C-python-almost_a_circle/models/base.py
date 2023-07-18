@@ -103,3 +103,36 @@ class Base:
                 return list_objs
         except Exception:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """This draws the shape with turtle graphics"""
+        import turtle
+
+        t = turtle.Turtle()
+        t.hideturtle()
+        t.speed(0)
+        t.screen.bgcolor("#000000")
+        t.penup()
+        t.pensize(4)
+        t.color("#07ff03")
+        for rect in list_rectangles:
+            t.penup()
+            t.goto(rect.x, rect.y)
+            t.pendown()
+            for i in range(2):
+                t.forward(rect.width)
+                t.left(90)
+                t.forward(rect.height)
+                t.left(90)
+        t.color("#0703ff")
+        for square in list_squares:
+            t.penup()
+            t.goto(square.x, square.y)
+            t.pendown()
+            for i in range(2):
+                t.forward(square.size)
+                t.left(90)
+                t.forward(square.size)
+                t.left(90)
+        turtle.done()
