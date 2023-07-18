@@ -97,7 +97,8 @@ class Base:
                 elif cls.__name__ == "Square":
                     fieldnames = ["id", "size", "x", "y"]
                 list_dict = csv.DictReader(f, fieldnames=fieldnames)
-                dic = [{k: int(v) for k, v in row.items() if v.isdigit()} for row in list_dict]
+                dic = [{k: int(v) for k, v in row.items() if v.isdigit()}
+                       for row in list_dict]
                 list_objs = [cls.create(**d) for d in dic]
                 return list_objs
         except Exception:

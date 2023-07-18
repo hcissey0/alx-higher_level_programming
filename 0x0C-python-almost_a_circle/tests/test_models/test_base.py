@@ -471,7 +471,7 @@ class TestBaseSaveToFileCSV(unittest.TestCase):
         square = Square(4)
         list_output = Square.save_to_file_csv([square])
         with open("Square.csv", "r") as f:
-            self.assertEqual(f"{square.id},4,0,0", f.read())
+            self.assertEqual(f"{square.id},4,0,0\n", f.read())
 
     def test_2_square(self):
         sq1 = Square(3, 0, 0, 2)
@@ -479,13 +479,77 @@ class TestBaseSaveToFileCSV(unittest.TestCase):
         list_input = [sq1, sq2]
         Square.save_to_file_csv(list_input)
         with open("Square.csv", "r") as f:
-            self.assertEqual("2,3,0,0\n3,4,0,0", f.read())
+            self.assertEqual("2,3,0,0\n3,4,0,0\n", f.read())
 
     def test_1_rect(self):
         rect = Rectangle(1, 2, 2, 2, 4)
-        Square.save_to_file_csv([rect])
+        Rectangle.save_to_file_csv([rect])
         with open("Rectangle.csv", "r") as f:
-            self.assertEqual("4,1,2,2,2", f.read())
+            self.assertEqual("4,1,2,2,2\n", f.read())
+
+    def test_2_rect(self):
+        rect1 = Rectangle(2, 2, 2, 2, 2)
+        rect2 = Rectangle(3, 3, 3, 3, 3)
+        list_input = [rect1, rect2]
+        Rectangle.save_to_file_csv(list_input)
+        with open("Rectangle.csv", "r") as f:
+            self.assertEqual("2,2,2,2,2\n3,3,3,3,3\n", f.read())
+
+
+class TestBaseLoadFromFileCSV(unittest.TestCase):
+    """This is the test case for the load_from_file_csv() func"""
+
+    @classmethod
+    def tearDown(cls):
+        import os
+        try:
+            os.remove("Rectangle.csv")
+        except Exception:
+            pass
+        try:
+            os.remove("Square.csv")
+        except Exception:
+            pass
+
+    def test_square_with_args(self):
+        with self.assertRaises(TypeError):
+            Square.load_from_file_csv(2)
+
+    def test_rect_with_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle.load_from_file_csv(4)
+
+    def test_square_1(self):
+        sq = Square(2, 2, 2, 2)
+        list_input = [sq]
+        Square.save_to_file_csv(list_input)
+        list_output = Square.load_from_file_csv()
+        self.assertEqual(str(list_input[0]), str(list_output[0]))
+
+    def test_square_2(self):
+        sq1 = Square(2, 2, 2, 2)
+        sq2 = Square(3, 3, 3, 3)
+        list_input = [sq1, sq2]
+        Square.save_to_file_csv(list_input)
+        list_output = Square.load_from_file_csv()
+        for i, obj in enumerate(list_output):
+            self.assertEqual(str(list_input[i]), str(obj))
+
+    def test_rect_1(self):
+        rect = Rectangle(3, 3, 3, 3, 3)
+        list_input = [rect]
+        Rectangle.save_to_file_csv(list_input)
+        list_output = Rectangle.load_from_file_csv()
+        self.assertEqual(str(list_input[0]), str(list_output[0]))
+
+    def test_rect_2(self):
+        rect1 = Rectangle(2, 2, 2, 2, 2)
+        rect2 = Rectangle(4, 4, 4, 4, 4)
+        list_input = [rect1, rect2]
+        Rectangle.save_to_file_csv(list_input)
+        list_output = Rectangle.load_from_file_csv()
+        for j, obj in enumerate(list_output):
+            self.assertEqual(str(list_input[j]), str(obj))
 
 
 if __name__ == "__main__":
