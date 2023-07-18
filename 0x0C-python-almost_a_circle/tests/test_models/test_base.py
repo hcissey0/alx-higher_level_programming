@@ -435,5 +435,58 @@ class TestBaseLoadFromFile(unittest.TestCase):
         self.assertEqual([], list_output)
 
 
+class TestBaseSaveToFileCSV(unittest.TestCase):
+    """The unittest cases for save_to_file_csv() function"""
+
+    @classmethod
+    def tearDown(cls):
+        """Clean up all created files"""
+        import os
+        try:
+            os.remove("Rectangle.csv")
+        except Exception:
+            pass
+        try:
+            os.remove("Square.csv")
+        except Exception:
+            pass
+
+    def test_square_no_args(self):
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv()
+
+    def test_rect_no_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv()
+
+    def test_square_more_args(self):
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv([], 2)
+
+    def test_rect_more_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv([], [])
+
+    def test_1_square(self):
+        square = Square(4)
+        list_output = Square.save_to_file_csv([square])
+        with open("Square.csv", "r") as f:
+            self.assertEqual(f"{square.id},4,0,0", f.read())
+
+    def test_2_square(self):
+        sq1 = Square(3, 0, 0, 2)
+        sq2 = Square(4, 0, 0, 3)
+        list_input = [sq1, sq2]
+        Square.save_to_file_csv(list_input)
+        with open("Square.csv", "r") as f:
+            self.assertEqual("2,3,0,0\n3,4,0,0", f.read())
+
+    def test_1_rect(self):
+        rect = Rectangle(1, 2, 2, 2, 4)
+        Square.save_to_file_csv([rect])
+        with open("Rectangle.csv", "r") as f:
+            self.assertEqual("4,1,2,2,2", f.read())
+
+
 if __name__ == "__main__":
     unittest.main()
