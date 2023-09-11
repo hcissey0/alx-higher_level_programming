@@ -1,3 +1,9 @@
 #!/usr/bin/node
-import { argv } from 'node:process';
-if (argv[2]) { console.log('Arguments found'); } else if (argv[1]) { console.log('Argument found'); } else { console.log('No argument'); }
+const arg = process.argv.slice(2);
+if (arg.length === 0) {
+  console.log('No argument');
+} else if (arg.length === 1) {
+  console.log('Argument found');
+} else {
+  console.log('Arguments found');
+}
