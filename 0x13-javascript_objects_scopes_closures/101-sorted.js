@@ -1,7 +1,7 @@
 #!/usr/bin/node
 const dict = require('./101-data.js').dict;
-let ndict = {};
-for (let key in dict) {
+const ndict = {};
+for (const key in dict) {
   if (ndict[dict[key]]) {
     ndict[dict[key]].push(key);
   } else {
