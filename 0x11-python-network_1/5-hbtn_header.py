@@ -1,0 +1,11 @@
+#!/usr/bin/python3
+"""this script is used to get a header of a url"""
+
+import requests
+import sys
+
+
+if __name__ == "__main__":
+    url = sys.argv[1]
+    res = requests.get(url)
+    print(res.headers['X-Request-id'])
