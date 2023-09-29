@@ -11,6 +11,7 @@ if __name__ == "__main__":
     res = requests.get(url)
     jsres = res.json()
     for k, v in enumerate(jsres):
-        if k == 13:
+        if k == 10:
             break
-        print("{}: {}".format(v.get('sha'), v.get('commit').get('author').get('name')))
+        print("{}: {}".format(v.get('sha'),
+                              v.get('commit').get('author').get('name')))
