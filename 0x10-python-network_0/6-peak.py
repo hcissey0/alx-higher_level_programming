@@ -6,4 +6,4 @@ def find_peak(list_of_integers):
     """This function is used to find the peak"""
     if not list_of_integers:
         return None
-    return max(list_of_integers)
+    return sorted(list_of_integers)[-1]
