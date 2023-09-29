@@ -10,4 +10,4 @@ if __name__ == "__main__":
     email = sys.argv[2]
     url = url + "?email=" + email
     with urllib.request.urlopen(url) as res:
-        print(res.read().decode('utf-8')
+        print(res.read().decode('utf-8'))
